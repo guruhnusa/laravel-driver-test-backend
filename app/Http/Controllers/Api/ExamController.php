@@ -112,8 +112,9 @@ class ExamController extends Controller
                 $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
 
                 $transformedData[] = [
-                    'score_signs' => $exam->score_signs,
-                    'status_signs' => 'done',
+                    'category' => 'Signs Test',
+                    'score' => $exam->score_signs,
+                    'status' => 'done',
                     'correct_answer' => $totalCorrectAnswer,
                     'incorrect_answer' => $totalIncorrectAnswer,
                 ];
@@ -128,8 +129,9 @@ class ExamController extends Controller
                 $totalCorrectAnswer = $examQuestionLists->where('answer', true)->count();
                 $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
                 $transformedData[] = [
-                    'score_generic' => $exam->score_generic,
-                    'status_generic' => 'done',
+                    'category' => 'Generic Test',
+                    'score' => $exam->score_generic,
+                    'status' => 'done',
                     'correct_answer' => $totalCorrectAnswer,
                     'incorrect_answer' => $totalIncorrectAnswer,
 
@@ -145,8 +147,9 @@ class ExamController extends Controller
                 $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
 
                 $transformedData[] = [
-                    'score_psychologist' => $exam->score_psychologist,
-                    'status_psychologist' => 'done',
+                    'category' => 'Psychologist Test',
+                    'score' => $exam->score_psychologist,
+                    'status' => 'done',
                     'correct_answer' => $totalCorrectAnswer,
                     'incorrect_answer' => $totalIncorrectAnswer,
                 ];
