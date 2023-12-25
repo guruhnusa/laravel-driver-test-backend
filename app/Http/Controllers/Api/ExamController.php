@@ -95,9 +95,71 @@ class ExamController extends Controller
         ]);
     }
 
+    public function getAllScore(Request $request)
+    {
+        $exams = Exam::where('user_id', $request->user()->id)->get();
+
+        $transformedData = [];
+        foreach ($exams as $exam) {
+
+            if ($exam->status_signs == 'done') {
+                //add correct and incorrect answer Signs
+                $examQuestionLists = ExamQuestionLists::where('exam_id', $exam->id)->get();
+                $examQuestionLists = $examQuestionLists->filter(function ($value, $key) {
+                    return $value->question->category == 'Signs';
+                });
+                $totalCorrectAnswer = $examQuestionLists->where('answer', true)->count();
+                $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
+
+                $transformedData[] = [
+                    'score_signs' => $exam->score_signs,
+                    'status_signs' => 'done',
+                    'correct_answer' => $totalCorrectAnswer,
+                    'incorrect_answer' => $totalIncorrectAnswer,
+                ];
+            }
+
+            if ($exam->status_generic == 'done') {
+                //add correct and incorrect answer Generic
+                $examQuestionLists = ExamQuestionLists::where('exam_id', $exam->id)->get();
+                $examQuestionLists = $examQuestionLists->filter(function ($value, $key) {
+                    return $value->question->category == 'Generic';
+                });
+                $totalCorrectAnswer = $examQuestionLists->where('answer', true)->count();
+                $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
+                $transformedData[] = [
+                    'score_generic' => $exam->score_generic,
+                    'status_generic' => 'done',
+                    'correct_answer' => $totalCorrectAnswer,
+                    'incorrect_answer' => $totalIncorrectAnswer,
+
+                ];
+            }
+            if ($exam->status_psychologist == 'done') {
+                //add correct and incorrect answer Psychologist
+                $examQuestionLists = ExamQuestionLists::where('exam_id', $exam->id)->get();
+                $examQuestionLists = $examQuestionLists->filter(function ($value, $key) {
+                    return $value->question->category == 'Psychologist';
+                });
+                $totalCorrectAnswer = $examQuestionLists->where('answer', true)->count();
+                $totalIncorrectAnswer = $examQuestionLists->where('answer', false)->count();
+
+                $transformedData[] = [
+                    'score_psychologist' => $exam->score_psychologist,
+                    'status_psychologist' => 'done',
+                    'correct_answer' => $totalCorrectAnswer,
+                    'incorrect_answer' => $totalIncorrectAnswer,
+                ];
+            }
+        }
+        return response()->json([
+            'message' => 'Get All Exam Success',
+            'data' => $transformedData,
+        ]);
+    }
+
+
     //asnwering question
-
-
     public function answerQuestion(Request $request)
     {
         $validatedData = $request->validate([

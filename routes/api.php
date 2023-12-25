@@ -34,3 +34,5 @@ Route::get('/get-question-exam', [ExamController::class, 'getListSoalByCategory'
 Route::post('/answers', [ExamController::class, 'answerQuestion'])->middleware('auth:sanctum');
 //get exam result
 Route::get('/get-score', [ExamController::class, 'calculateScoreByCategory'])->middleware('auth:sanctum');
+//get exam result
+Route::get('/get-all-score', [ExamController::class, 'getAllScore'])->middleware('auth:sanctum');
