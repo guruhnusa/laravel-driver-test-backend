@@ -97,6 +97,7 @@ class ExamController extends Controller
 
     //asnwering question
 
+
     public function answerQuestion(Request $request)
     {
         $validatedData = $request->validate([
@@ -111,12 +112,11 @@ class ExamController extends Controller
                 'data' => [],
             ], 200);
         }
-
         $examQuestionList = ExamQuestionLists::where('exam_id', $exam->id)->where('question_id', $validatedData['question_id'])->first();
         $question = Question::where('id', $validatedData['question_id'])->first();
 
         //check answer
-        if ($question->asnwer == $validatedData['answer']) {
+        if ($question->answer == $validatedData['answer']) {
             $examQuestionList->update(
                 ['answer' => true]
             );
@@ -125,8 +125,9 @@ class ExamController extends Controller
                 ['answer' => false]
             );
         }
+
         return response()->json([
-            'message' => 'Answer Question Success',
+            'message' => 'Answer question successfully',
             'answer' => $examQuestionList->answer,
         ]);
     }
