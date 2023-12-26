@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExamController;
+use App\Http\Controllers\Api\SignApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,5 @@ Route::post('/answers', [ExamController::class, 'answerQuestion'])->middleware('
 Route::get('/get-score', [ExamController::class, 'calculateScoreByCategory'])->middleware('auth:sanctum');
 //get exam result
 Route::get('/get-all-score', [ExamController::class, 'getAllScore'])->middleware('auth:sanctum');
+//get signs by category
+Route::get('/get-signs', [SignApiController::class, 'getSignsByCategory'])->middleware('auth:sanctum');
