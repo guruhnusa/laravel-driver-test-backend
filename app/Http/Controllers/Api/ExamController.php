@@ -81,16 +81,21 @@ class ExamController extends Controller
 
         $question = Question::whereIn('id', $examQuestionListsId)->where('category', $request->category)->get();
         //timer by category
+        //status by category
+        $status = $exam->status_signs;
         $timer = $exam->timer_signs;
         if ($request->category == 'Generic') {
+            $status = $exam->status_generic;
             $timer = $exam->timer_generic;
         } elseif ($request->category == 'Psychologist') {
+            $status = $exam->status_psychologist;
             $timer = $exam->timer_psychologist;
         }
 
         return response()->json([
             'message' => 'Get Question Success',
             'timer' => $timer,
+            'status' => $status,
             'data' => QuestionResource::collection($question),
         ]);
     }
