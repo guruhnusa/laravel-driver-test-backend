@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sign extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'category',
+        'description',
+        'image',
+    ];
 }

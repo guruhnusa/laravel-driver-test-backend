@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Questions')
+@section('title', 'Signs')
 
 @push('style')
     <!-- CSS Libraries -->\
@@ -11,9 +11,9 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Questions</h1>
+                <h1>Signs</h1>
                 <div class="section-header-button">
-                    <a href="" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('signs.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="">Signs</a></div>
@@ -80,16 +80,22 @@
                                                     {{ $sign->description }}
                                                 </td>
                                                 <td>
-                                                    {{ $sign->image }}
+                                                    @if ($sign->image)
+                                                        <img src="{{ asset('storage/public/signs/' . $sign->image) }}"
+                                                            alt="" width="100px" class="img-thumbnail">
+                                                    @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='' class="btn btn-sm btn-info btn-icon">
+                                                        <a href='{{ route('signs.edit', $sign->id) }}'
+                                                            class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
-                                                        <form action="" method="POST" class="ml-2"
-                                                            data-confirm-delete="true">
+                                                        <form action="{{ route('signs.destroy', $sign->id) }}"
+                                                            method="POST" class="ml-2" data-confirm-delete="true">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}" />

@@ -17,7 +17,4 @@ class SignApiController extends Controller
             'signs' => $signs,
         ]);
     }
-
-    //lalu penggunaanya bagaiamn?
-    //kita bisa mengaksesnya dengan menggunakan url http://localhost:8000/api/get-signs?category=Signs
 }
