@@ -31,9 +31,9 @@ class ExamController extends Controller
         // Create exam and set timers
         $exam = Exam::create([
             'user_id' => $request->user()->id,
-            'timer_signs' => 10,
-            'timer_generic' => 10,
-            'timer_psychologist' => 10,
+            'timer_signs' => 5,
+            'timer_generic' => 5,
+            'timer_psychologist' => 5,
         ]);
 
         // Create exam details
