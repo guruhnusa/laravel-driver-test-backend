@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\SignApiController;
+use App\Http\Controllers\Api\VideoApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,5 @@ Route::get('/get-score', [ExamController::class, 'calculateScoreByCategory'])->m
 Route::get('/get-all-score', [ExamController::class, 'getAllScore'])->middleware('auth:sanctum');
 //get signs by category
 Route::get('/get-signs', [SignApiController::class, 'getSignsByCategory'])->middleware('auth:sanctum');
+//get video
+Route::get('/get-video', [VideoApiController::class, 'getAllVideo'])->middleware('auth:sanctum');

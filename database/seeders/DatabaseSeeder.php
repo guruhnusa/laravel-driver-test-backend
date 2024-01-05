@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ContentSeeder::class,
             ExamSeeder::class,
             ExamQuestionListSeeder::class,
+            VideoSeeder::class,
         ]);
     }
 }
