@@ -1,9 +1,5 @@
 /.phpunit.cache
 /node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
 /vendor
 .env
 .env.backup
@@ -17,16 +13,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-# .gitignore
-
-/storage/*
-!/storage/app/
-!/storage/app/public/
-!/storage/framework/
-!/storage/framework/cache/
-!/storage/framework/cache/data/
-!/storage/framework/sessions/
-!/storage/framework/testing/
-!/storage/framework/views/
-!/storage/logs/
 
